@@ -224,13 +224,13 @@ def interception(listaParseo):
 			print ("El área predominante es área 1 con: "+ str(maximo) + " elementos")
 		if ((len(interSalud) > len(interIng)) and (len(interSalud) > len(interSociales) and (len(interSalud) > len(interArtes)))):
 			maximo = len(interIng)
-			print ("El área predominante es área 1 con: "+ str(maximo) + " elementos")
+			print ("El área predominante es área 2 con: "+ str(maximo) + " elementos")
 		if ((len(interSociales) > len(interIng)) and (len(interSociales) > len(interSalud) and (len(interSociales) > len(interArtes)))):
 			maximo = len(interIng)
-			print ("El área predominante es área 1 con: "+ str(maximo) + " elementos")
+			print ("El área predominante es área 3 con: "+ str(maximo) + " elementos")
 		if ((len(interArtes) > len(interIng)) and (len(interArtes) > len(interSalud) and (len(interArtes) > len(interSociales)))):
 			maximo = len(interIng)
-			print ("El área predominante es área 1 con: "+ str(maximo) + " elementos")
+			print ("El área predominante es área 4 con: "+ str(maximo) + " elementos")
 
 
 
