@@ -2,23 +2,46 @@
 # Modificado por Ángel Santander
 from TextExtractor import TextExtractor
 from Model import Model
-
+from Stats import Stats
 class CliUI:
     def __init__(self):
         print("Hola mundo")
         self.model=Model('glosario.csv')
+        self.default_files={
+            '1':('Área I','./papers/paper.pdf'),
+            '2':('Área II','./papers/Síndrome_de_Holmes.pdf'),
+            '3':('Área III','./papers/Derecho_empresarial.pdf')
+        }
 
     def loop(self):
         while True:
             print("PROGRAMA CLASIFICADOR DE TEMAS")
-            file=input('Que archivo quieres leer? ')
-            print(file)
-            file=TextExtractor(file)
-            a = input('Ingresa el inicio de las páginas a analizar: \n-->')
-            b = input('Ingresa el fin de las páginas a analizar: \n-->')
-            text=file.pageRangeText(int(a),int(b))
-            self.model.classify(text)
+            for opt in self.default_files.keys():
+                print(f"[{opt}]",self.default_files[opt][0],self.default_files[opt][1])
+            print('[4]',"Salir")
+            opt=input('Que archivo quieres leer? ')
+            if opt !='4':
+                try:
+                    file=TextExtractor(self.default_files[opt][1])
+                except RuntimeError:
+                    print("No se encontró el archivo")
+                    return
+                a = input('Ingresa el inicio de las páginas a analizar: \n-->')
+                b = input('Ingresa el fin de las páginas a analizar: \n-->')
+                try:
+                    text=file.pageRangeText(int(a),int(b))
+                    results=self.model.classify(text)
+                    stats=Stats()
+                    stats.plot(results)
+                except ValueError:
+                    print("ERROR: El rango de páginas supera al número de páginas")
+
+            else:
+                exit()
 
 if __name__=="__main__":
     ui=CliUI()
-    ui.loop()
+    try:
+        ui.loop()
+    except KeyboardInterrupt:
+        print("Saliendo")
