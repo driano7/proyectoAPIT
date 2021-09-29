@@ -27,6 +27,8 @@ class Model:
                 if num_matches>max[1]:
                     max=(area,num_matches)
         print(f"El área predominante es {max[0]} con: {max[1]} elementos")
+        return results
+    
 if __name__=="__main__":
     from TextExtractor import TextExtractor
     model=Model('glosario.csv')
