@@ -1,12 +1,17 @@
+# -*- coding: utf-8 -*-
+
 #Programa hecho por Donovan Riaño Enriquez, APIT 2021-2
 
-import fitz#para leer pdf
-from collections import Counter#para conteo palabras
-import nltk#natutal language toolkit Python
+import fitz #para leer pdf
+from collections import Counter #para conteo palabras
+import nltk #natutal language toolkit Python
 from nltk.tokenize import sent_tokenize
 import numpy as np
 from matplotlib import pyplot as plt
 import json
+import pandas as pd 
+import numpy as np
+
 
 #Función para leer papers de los tres idiomas
 def readDocument(choose):
@@ -75,6 +80,7 @@ def count(page1text, i):
 	lista = []
 	datos = {}
 	listaParseo=page1text.split()
+	interception(listaParseo)
 	kindSort = int(input("Ingresa el tipo de ordenamiento que necesitas: \n1.Alfabético, 2.Alfabético de Mayor a menor, 3. Por claves menor, 4. Por claves mayor\n-->"))
 	if kindSort == 1:
 		print(' ---------------------------------------------------')
@@ -183,6 +189,51 @@ def count_n_gram(text,n):
         k[0]: ((k[1]/total_n_grams)*100,i)
         for k,i in zip(sorted(count.items(), key=lambda item: item[1],reverse=True),range(total_n_grams))
         }
+
+def interception(listaParseo):
+	glosario = pd.read_csv('glosario.csv')
+	ing = glosario['Area1']
+	salud = glosario['Area2']
+	sociales = glosario['Area3']
+	artes = glosario['Area4']
+	
+	if (listaParseo !=[]):           
+		interIng = set (ing).intersection(listaParseo)
+		interSalud = set (salud).intersection(listaParseo)
+		interSociales = set (sociales).intersection(listaParseo)
+		interArtes = set (artes).intersection(listaParseo)
+
+		if (len(interIng)!=0):
+			print("Las coincidencias son:")
+			print ("-->"+ str(interIng))
+		
+		if (len(interSalud)!=0):
+			print("Las coincidencias son:")
+			print ("-->"+ str(interSalud))
+
+		if (len(interSociales)!=0):
+			print("Las coincidencias son:")
+			print ("-->"+ str(interSociales))
+
+		if (len(interArtes)!=0):
+			print("Las coincidencias son:")
+			print ("-->"+ str(interArtes))
+
+		if ((len(interIng) > len(interSalud)) and (len(interIng) > len(interSociales) and (len(interIng) > len(interArtes)))):
+			maximo = len(interIng)
+			print ("El área predominante es área 1 con: "+ str(maximo) + " elementos")
+		if ((len(interSalud) > len(interIng)) and (len(interSalud) > len(interSociales) and (len(interSalud) > len(interArtes)))):
+			maximo = len(interIng)
+			print ("El área predominante es área 1 con: "+ str(maximo) + " elementos")
+		if ((len(interSociales) > len(interIng)) and (len(interSociales) > len(interSalud) and (len(interSociales) > len(interArtes)))):
+			maximo = len(interIng)
+			print ("El área predominante es área 1 con: "+ str(maximo) + " elementos")
+		if ((len(interArtes) > len(interIng)) and (len(interArtes) > len(interSalud) and (len(interArtes) > len(interSociales)))):
+			maximo = len(interIng)
+			print ("El área predominante es área 1 con: "+ str(maximo) + " elementos")
+
+
+
 
 #Función en espera, aún falta por arreglar el bug de pasar todos los elementos
 #Función de plot
