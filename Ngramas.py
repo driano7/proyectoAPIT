@@ -8,8 +8,9 @@ import nltk #natutal language toolkit Python
 from nltk.tokenize import sent_tokenize
 import numpy as np
 from matplotlib import pyplot as plt
+from matplotlib.pyplot import *
 import json
-import pandas as pd 
+import pandas as pd
 import numpy as np
 
 
@@ -20,11 +21,11 @@ def readDocument(choose):
 		doc = fitz.open(pdf_document)
 		chooseDoc(doc)
 	if choose == 2:
-		pdf_document = "papers/PaperPCS_FullVersion.pdf"
+		pdf_document = "papers/Modul_uno_de_derecho_empresarial.pdf"
 		doc = fitz.open(pdf_document)
 		chooseDoc(doc)
 	if choose == 3:
-		pdf_document = "papers/tendenze201908.pdf"
+		pdf_document = "papers/Capítulo_234_Exploración_física_del_aparato_cardiovascular.pdf"
 		doc = fitz.open(pdf_document)
 		chooseDoc(doc)
 
@@ -173,22 +174,7 @@ def count(page1text, i):
 		#graficacion (key, val)
 		#return key, val
 
-def count_n_gram(text,n):
-    count={}
-    total_n_grams=0
-    for i in range(len(text)+1-n):
-        total_n_grams+=1
-        n_gram=text[i:i+n]
-        if n_gram in count.keys():
-            count[n_gram]+=1
-        else:
-            count[n_gram]=1
-    i=0
-    return {
-        # k: ((v/total_n_grams)*100,i)
-        k[0]: ((k[1]/total_n_grams)*100,i)
-        for k,i in zip(sorted(count.items(), key=lambda item: item[1],reverse=True),range(total_n_grams))
-        }
+
 
 def interception(listaParseo):
 	glosario = pd.read_csv('glosario.csv')
@@ -196,28 +182,33 @@ def interception(listaParseo):
 	salud = glosario['Area2']
 	sociales = glosario['Area3']
 	artes = glosario['Area4']
-	
-	if (listaParseo !=[]):           
+
+	if (listaParseo !=[]):
 		interIng = set (ing).intersection(listaParseo)
 		interSalud = set (salud).intersection(listaParseo)
 		interSociales = set (sociales).intersection(listaParseo)
 		interArtes = set (artes).intersection(listaParseo)
+		interAll = set (interIng).intersection(interSalud).intersection(interSociales).intersection(interArtes)
 
 		if (len(interIng)!=0):
-			print("Las coincidencias son:")
+			print("Las coincidencias del área 1 son:")
 			print ("-->"+ str(interIng))
-		
+
 		if (len(interSalud)!=0):
-			print("Las coincidencias son:")
+			print("Las coincidencias del área 2 son:")
 			print ("-->"+ str(interSalud))
 
 		if (len(interSociales)!=0):
-			print("Las coincidencias son:")
+			print("Las coincidencias del área 3 son:")
 			print ("-->"+ str(interSociales))
 
 		if (len(interArtes)!=0):
-			print("Las coincidencias son:")
+			print("Las coincidencias del área 4 son:")
 			print ("-->"+ str(interArtes))
+
+		if (len(interAll)!=0):
+			print("Las coincidencias de todas las áreas son:")
+			print ("-->"+ str(interAll))
 
 		if ((len(interIng) > len(interSalud)) and (len(interIng) > len(interSociales) and (len(interIng) > len(interArtes)))):
 			maximo = len(interIng)
@@ -232,21 +223,50 @@ def interception(listaParseo):
 			maximo = len(interIng)
 			print ("El área predominante es área 4 con: "+ str(maximo) + " elementos")
 
+		graficacion(interIng, interSalud, interSociales, interArtes)
+
 
 
 
 #Función en espera, aún falta por arreglar el bug de pasar todos los elementos
 #Función de plot
-def graficacion (key, val):
-	plt.bar(key,val,color='r')
-	plt.xlabel("Numeros Aleatorios")
-	plt.title("Grafica Piramidal QuickSort")
+def graficacion (interIng, interSalud, interSociales, interArtes):
+	# plt.subplot(1,4,1)
+	# plt.bar(['Ingeniería','Biológicas','Sociales','Humanidades'],[len(interIng),len(interSalud),
+	len(interSociales),len(interArtes)])
+	# p1 = plot(list(interIng),len(interIng), label = 'Gráfica área 1',color = 'blue')
+	plt.ylabel("Palabras", fontsize=12)
+	plt.legend()
+	plt.grid(True)
+
+	# plt.subplot(1,4,2)
+	# p2 = plot(list(interSalud),len(interSalud), label = 'Gráfica área 2',color = 'orange')
+	# plt.legend()
+	# plt.grid(True)
+	#
+	# plt.xlabel("Cantidad de repeticiones", fontsize=12)
+	#
+	# plt.title("Gráfica Comparaciones repeticiones áreas conocimiento")
+	#
+	# plt.subplot(1,4,3)
+	# p3 = plot(list(interIng),len(interSociales), label = 'Gráfica área 3',color = 'green')
+	# plt.legend()
+	# plt.grid(True)
+	#
+	# plt.subplot(1,4,4)
+	# p3 = plot(list(interIng),len(interArtes), label = 'Gráfica área 4',color = 'purple')
+	# plt.legend()
+	# plt.grid(True)
+
+
+	#plt.savefig("Sujeto16/Comparaciones/GraficaSubElectroSujeto16.jpg", bbox_inches = 'tight')
+
 	plt.show()
 	#fig.savefig("GraficaPidBub.png")"""
 
 #Método main
 def main ():
-	choose = int(input("Ingresa el número del doc  que deseas leer: \n1.Español, 2.Inglés, 3.Italiano\n-->"))
+	choose = int(input("Ingresa el número del doc  que deseas leer: \n1.Ingenieria, 2.Derecho, 3.Medicina\n-->"))
 	readDocument(choose)
 
 #Sin el play, el programa no hace nada
