@@ -55,16 +55,27 @@ class Model:
                 file.write(json.dumps(clean_model))
 
     def classify(self,text):
-        results={area:-1 for area in self.areas}
+        results={}
+        models={}
+        for model in os.listdir(MODEL):
+            with open(f'{MODEL}/{model}','r') as file:
+                models[model]=json.loads(file.read())
+                results[model]=0
+
         max=('',0)
-        if self.file:
-            for area in self.areas:
-                results[area]=set(self.words[area]).intersection(text)
+        preproceser=Preprocess()
+        input_representation=preproceser.countWords(text)
+        for model in models.keys():
+            for key in input_representation.keys():
+                try:
+                    results[model]+=models[model][key]
+                except Exception:
+                    # print(f"Llave no encontrada {key}")
+                    pass
 
         for area in results.keys():
-            num_matches=len(results[area])
-            # if num_matches>0:
-            print(f"{area} Las coincidencias son: {num_matches} {list(results[area])}")
+            num_matches=results[area]
+            print(f"{area} Las coincidencias son: {num_matches}")
             if num_matches>max[1]:
                 max=(area,num_matches)
         if max[0]!='':
@@ -77,7 +88,7 @@ if __name__=="__main__":
     from TextExtractor import TextExtractor
     # model=Model('glosario.csv')
     model=Model()
-    model.train()
-    # file=TextExtractor('java.pdf')
-    # text=file.pageRangeText(1,5)
-    # model.classify(text)
+    # model.train()
+    file=TextExtractor('prueba.pdf')
+    text=file.getAllText()
+    model.classify(text)

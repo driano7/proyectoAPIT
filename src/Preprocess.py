@@ -10,15 +10,18 @@ class Preprocess:
         self.filename=file
 
     def loadWords(self):
-        try:
-            with open(self.filename,'r') as file:
-                self.results=json.loads(file.read())
-        except FileNotFoundError:
-            print("No existe un archivo con las palabras")
-            print("Se creará uno al iniciar el entrenamiento")
+        if self.filename:
+            try:
+                with open(self.filename,'r') as file:
+                    self.results=json.loads(file.read())
+            except FileNotFoundError:
+                print("No existe un archivo con las palabras")
+                print("Se creará uno al iniciar el entrenamiento")
+        else:
+            print("Este archivo no es serialize porque no se definió el archivo")
 
-    def countWords(self,words:list,words_area:dict):
-        
+    def countWords(self,words:list,**kwargs):
+        words_area=kwargs.get('words_area', False)
         if not self.results:
             self.results={}
         for word in words:
@@ -26,14 +29,15 @@ class Preprocess:
                 stem=self.stemmer.stem(word)
                 if stem not in self.results.keys():
                     self.results[stem]=1
-                    print("Print primera vez palabra")
-                    if stem not in words_area.keys():
-                        print("Print primera vez")
-                        words_area[stem]=1
-                        words_area['words_overall']+=1
+                    if words_area:
+                        if stem not in words_area.keys():
+                            words_area[stem]=1
+                            words_area['words_overall']+=1
+                        else:
+                            words_area[stem]+=1
                     else:
-                        words_area[stem]+=1
-                        print("Posterior")
+                        pass
+                        # print("Este no es un preprocesado de modelo")
                 else:
                     self.results[stem]+=1
                     print("Posterior palabra")
@@ -42,7 +46,7 @@ class Preprocess:
             sorted(self.results.items(), key=lambda item: item[1],reverse=True)
         }
         pprint(self.results,sort_dicts=False)
-        print(words_area)
+        return self.results
 
     def serialize(self):
         if self.filename:
