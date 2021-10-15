@@ -22,10 +22,10 @@ class Model:
 
     def train(self):
         words_filepath=f"./{GLOBAL_COUNT}.json"
-        labels_keys={}
+        labels_keys={} #{area:[palabras],area..}
         word_areas={} #Dict holding {word:num_areas_in_which_appears}
         try:
-            with open(words_filepath,"r") as file:
+            with open(words_filepath,"r",encoding="utf-8") as file:
                 word_areas=json.loads(file.read())
             pass
         except FileNotFoundError:
@@ -39,26 +39,34 @@ class Model:
                     file=TextExtractor(TRAINING+'/'+area+'/'+file)
                     text=file.getAllText()
                     procesador.countWords(text,words_area=word_areas)
+            procesador.normalize()
             labels_keys[area]=procesador.results.keys()
             procesador.serialize()
+
         with open(words_filepath,"w") as file:
             file.write(json.dumps(word_areas))
         for area in labels_keys.keys():
             model={}
             clean_model={}
-            with open(f"{DATA}/{area}.json",'r') as file:
+            with open(f"{DATA}/{area}.json",'r',encoding="utf-8") as file:
                 model=json.loads(file.read())
             for key in labels_keys[area]:
-                weight=(model[key]/word_areas['words_overall'])*(1/word_areas[key])
+                # weight=(model[key]/word_areas['words_overall'])*(1/word_areas[key])
+                weight=model[key]*(1/word_areas[key])
                 clean_model[key]=weight
-            with open(f"{MODEL}/{area}.json",'w') as file:
+            # Sorting
+            # clean_model={
+            #     k: v for k, v in
+            #     sorted(clean_model.items(), key=lambda item: item[1],reverse=True)
+            # }
+            with open(f"{MODEL}/{area}.json",'w',encoding="utf-8") as file:
                 file.write(json.dumps(clean_model))
 
     def classify(self,text):
         results={}
         models={}
         for model in os.listdir(MODEL):
-            with open(f'{MODEL}/{model}','r') as file:
+            with open(f'{MODEL}/{model}','r',encoding="utf-8") as file:
                 models[model]=json.loads(file.read())
                 results[model]=0
 
@@ -66,7 +74,7 @@ class Model:
         preproceser=Preprocess()
         input_representation=preproceser.countWords(text)
         for model in models.keys():
-            for key in input_representation.keys():
+            for key in list(input_representation.keys())[:25]:
                 try:
                     results[model]+=models[model][key]
                 except Exception:
@@ -86,9 +94,5 @@ class Model:
 
 if __name__=="__main__":
     from TextExtractor import TextExtractor
-    # model=Model('glosario.csv')
     model=Model()
-    # model.train()
-    file=TextExtractor('prueba.pdf')
-    text=file.getAllText()
-    model.classify(text)
+    model.train()
