@@ -28,13 +28,11 @@ class Preprocess:
             self.results={}
         for word in words:
             if word not in self.stopwords and word not in self.stopwords_en and len(word)>2:
-                stem=word #Prueba
+                # stem=word #Prueba
+                stem=self.stemmer.stem(word)
                 if stem not in self.results.keys():
                     self.results[stem]=1
                     self.total_word_counter+=1
-                # stem=self.stemmer.stem(word)
-                # if stem not in self.results.keys():
-                    # self.results[stem]=1
                     if words_area:
                         if stem not in words_area.keys():
                             words_area[stem]=1
