@@ -1,0 +1,30 @@
+arqui 1: http://orion.esteticas.unam.mx/anales/index.php/analesiie/article/view/1308/1295
+arqui 2: https://www.unizar.es/artigrama/pdf/23/2monografico/01.pdf
+arqui 3: https://oa.upm.es/1702/1/SAMBRICIO_ART_1979_05.pdf
+computacion 1: https://repositorio.itm.edu.co/bitstream/handle/20.500.12622/1020/685-Manuscrito-968-1-10-20180411.pdf?sequence=1&isAllowed=y
+computacion 2: https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.192.6350&rep=rep1&type=pdf
+computacion 3: https://www.iiis.org/CDs2012/CD2012SCI/CISCI_2012/PapersPdf/CA732OV.pdf
+computacion 4: https://www.redalyc.org/pdf/610/61026309.pdf
+computacion 5: https://acis.org.co/archivos/Revista/98/4_Uno.pdf
+computacion 6: https://www.redalyc.org/pdf/416/41620956003.pdf
+ciencias de la tierra 1: http://www.revista.unam.mx/vol.8/num10/art78/oct_art78.pdf
+ciencias de la tierra 2: https://www.edutec.es/revista/index.php/edutec-e/article/view/1143/pdf
+ciencias de la tierra 3: https://www.redalyc.org/pdf/360/36014577008.pdf
+ciencias de la tierra 4: http://www.scielo.org.mx/pdf/rmcg/v25n2/v25n2a4.pdf
+fisica 1: https://web.archive.org/web/20180410152321id_/http://reec.uvigo.es/volumenes/volumen4/ART1_Vol4_N3.pdf
+fisica 2: http://revcolfis.org/ojs/index.php/rcf/article/viewFile/430210/pdf
+fisica 3: http://62.204.194.45/fez/eserv/taee:congreso-2004-1085/S3B03.pdf
+matemáticas 1: https://www.scielo.br/j/bolema/a/35M8mhwYSZncvCFMRRF5t9t/?format=pdf&lang=es
+matemáticas 2: https://reunido.uniovi.es/index.php/PST/article/view/8747/8611
+matemáticas 3: https://www.redalyc.org/pdf/1932/193222357008.pdf
+electrónica 1: http://revcolfis.org/ojs/index.php/rcf/article/download/430121/pdf
+electrónica 2: https://ria.utn.edu.ar/bitstream/handle/20.500.12272/2337/LIBRERIAS%20PARA%20MICROCONTROLADOR%20APLICADO%20A%20SISTEMAS%20DE%20SEGUIMIENTO%20Y%20RASTREO%20SATELITAL.pdf?sequence=1&isAllowed=y
+electrónica 3: https://www.researchgate.net/profile/Fernando-Sciascio/publication/248382106_Interfase_para_el_Control_de_Procesos_a_traves_del_Puerto_Paralelo_de_una_PC/links/5580410508ae0e061932b18f/Interfase-para-el-Control-de-Procesos-a-traves-del-Puerto-Paralelo-de-una-PC.pdf
+telecomunicaciones 1: https://cpic-sistemas.or.cr/revista/index.php/technology-inside/article/view/47/47
+telecomunicaciones 2: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.938.3599&rep=rep1&type=pdf
+telecomunicaciones 3: http://www.laccei.org/LACCEI2011-Medellin/RefereedPapers/IT057_Medina.pdf
+biomedica 1: http://repositorio.espe.edu.ec/bitstream/21000/6291/1/AC-AUTOMATIZACI%C3%93N-ESPE-038891.pdf
+biomedica 2: http://somi.ccadet.unam.mx/somi29/memoriassomi29/PDFS/Intrumentacion/11-YZSOMI-25-11.pdf
+biomedica 3: http://www.rmib.mx/index.php/rmib/article/view/409/450
+actuaria 1:https://bit.ly/3v1rsBs
+actuaria 2: https://www.redalyc.org/pdf/301/30130732005.pdf

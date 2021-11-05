@@ -1,1 +1,6 @@
 *.pdf
+data
+model
+task.md
+training
+*.json

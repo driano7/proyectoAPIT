@@ -26,13 +26,16 @@ class TextExtractor:
         text=clean_text(text)
         return text.split()
 
-    def getAllText(self):
+    def getAllText(self,splited=True):
         text=''
         for i in range (0,len(self.pdf)):
             page = self.pdf.loadPage(i)
             text+= page.getText("text")
         text=clean_text(text)
-        return text.split(' ')
+        if splited:
+            return text.split(' ')
+        else:
+            return text
 
 if __name__=="__main__":
     import sys
