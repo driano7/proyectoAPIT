@@ -74,12 +74,14 @@ class Model:
         preproceser=Preprocess()
         input_representation=preproceser.countWords(text)
         for model in models.keys():
-            for key in list(input_representation.keys())[:25]:
+            # Se toman todas las palabras
+            for key in list(input_representation.keys()):
                 try:
                     results[model]+=models[model][key]
                 except Exception:
                     # print(f"Llave no encontrada {key}")
                     pass
+            results[model]=results[model]/preproceser.total_word_counter
 
         for area in results.keys():
             num_matches=results[area]
