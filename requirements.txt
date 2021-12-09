@@ -3,4 +3,4 @@ pandas==1.3.0
 matplotlib==3.4.2
 nltk==3.6.2
 scikit-learn
-PyMuPDF
+PyMuPDF==1.18.19
