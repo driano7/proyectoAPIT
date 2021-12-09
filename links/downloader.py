@@ -1,10 +1,13 @@
 import sys
 import requests
 from urllib3.exceptions import InsecureRequestWarning
+import os
+from os import path
 args=sys.argv
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 def downloadFile2folder(file,folder):
+    ''' Descarga un pdf en un folder '''
     with open(file,'r') as file:
         for line in file:
             line=line.replace('\n','')
@@ -22,7 +25,24 @@ def downloadFile2folder(file,folder):
                         print(f"Error: No PDF {name} {response.status_code}: {link}")
                 else:
                     print(f"Algo saló mal con {name} {response.status_code}: {link}")
-            except:
-                print(f"Algo saló mal con {name} {response.status_code}: {link}")
+            except Exception as e:
+                print(f"Algo saló mal con {name} {response.status_code}: {link} {e}")
 
-downloadFile2folder(args[1],args[2])
+# downloadFile2folder(args[1],args[2])
+TRAINING_FOLDER='./noexiste'
+def checkCreate(folder):
+    ''' Comprueba si existe un archivo sino lo crea '''
+    if(path.exists(folder)):
+        print("Exste")
+    else:
+        print("No existe se crea")
+        os.mkdir(folder)
+
+def downloadArticles():
+    ''' Descarga todos los pdf que se encuentren en los links de los archivos de texto '''
+    checkCreate(TRAINING_FOLDER)
+    for file in os.listdir('./links'):
+        if file[-3:]=="txt":
+            label_folder=TRAINING_FOLDER+os.sep+file[:len(file)-4].upper()
+            checkCreate(label_folder)
+            downloadFile2folder('./links'+os.sep+file,label_folder)
