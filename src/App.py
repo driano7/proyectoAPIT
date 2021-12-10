@@ -11,17 +11,18 @@ def clasify(filename):
     text=file.getAllText()
     model.classify(text)
 
-def clasify_bayes(filename):
-    model=ModelBayes()
-    file=TextExtractor(filename)
-    text=file.getAllText()
-    model.classify(" ".join(text))
 
 def clasify_conjuntos(filename):
     model=ModelConjuntos('glosario.csv')
     file=TextExtractor(filename)
     text=file.getAllText()
     model.classify(text)
+
+def clasify_bayes(filename):
+    model=ModelBayes()
+    file=TextExtractor(filename)
+    text=file.getAllText()
+    model.classify(" ".join(text))
 
 if __name__=="__main__":
     # ui=CliUI()

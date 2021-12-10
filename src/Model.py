@@ -4,11 +4,20 @@ import pandas as pd
 import os
 from Preprocess import Preprocess
 from TextExtractor import TextExtractor
+from utils import checkCreate
 import json
-TRAINING='./training'
-DATA='./data'
-MODEL="./model"
-GLOBAL_COUNT='words'
+
+try:
+    with open('constantes.json','r') as file:
+        ENV=json.loads(file.read())
+except Exception as e:
+    print(f"Hubo un error al leer el archivo de constantes {e}")
+    exit(1)
+
+TRAINING=ENV['training']
+DATA=ENV['data']
+MODEL=ENV['model']
+GLOBAL_COUNT=ENV['global_count']
 class Model:
     def __init__(self,file=None):
         self.areas=['Area1','Area2','Area3','Area4']
@@ -19,8 +28,10 @@ class Model:
             glosario = pd.read_csv('glosario.csv')
             for area in self.areas:
                    self.words[area]=glosario[area]
+        checkCreate(MODEL)
 
     def train(self):
+        checkCreate(DATA)
         words_filepath=f"./{GLOBAL_COUNT}.json"
         labels_keys={} #{area:[palabras],area..}
         word_areas={} #Dict holding {word:num_areas_in_which_appears}

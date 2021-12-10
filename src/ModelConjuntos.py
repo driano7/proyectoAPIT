@@ -11,6 +11,7 @@ class ModelConjuntos:
         las coincidencias
     '''
     def __init__(self,file='glosario.csv'):
+        ''' Se carga el glosario '''
         self.areas=['Area1','Area2','Area3','Area4']
         self.words={area:None for area in self.areas}
         self.file=None
@@ -20,7 +21,12 @@ class ModelConjuntos:
             for area in self.areas:
                    self.words[area]=glosario[area]
 
-    def classify(self,text):
+    def classify(self,text:str):
+        ''' Para clasificar un texto se recibe el texto en forma de lista de
+        cadenas y se realiza, como función de similitud, la instersección
+        la lista de palabas.
+        Parametros:
+        text(string): La lista de palabras del archivo a clasificar '''
         results={area:-1 for area in self.areas}
         max=(self.areas[0],0)
         if self.file:
