@@ -4,7 +4,6 @@ import pandas as pd
 import os
 labels_path='./training'
 
-
 stopwords=stopwords.words("spanish")
 
 cv = CountVectorizer(stop_words=stopwords)

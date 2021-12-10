@@ -1,21 +1,27 @@
 from CliUI import CliUI
+from ModelConjuntos import ModelConjuntos
 from Model import Model
 from ModelBayes import ModelBayes
+from TextExtractor import TextExtractor
 import sys
+
 def clasify(filename):
-    from TextExtractor import TextExtractor
     model=Model()
     file=TextExtractor(filename)
-    #file=TextExtractor('papers/paper.pdf')
-    # file=TextExtractor('papers/Síndrome_de_Holmes.pdf')
     text=file.getAllText()
     model.classify(text)
+
 def clasify_bayes(filename):
-    from TextExtractor import TextExtractor
     model=ModelBayes()
     file=TextExtractor(filename)
     text=file.getAllText()
     model.classify(" ".join(text))
+
+def clasify_conjuntos(filename):
+    model=ModelConjuntos('glosario.csv')
+    file=TextExtractor(filename)
+    text=file.getAllText()
+    model.classify(text)
 
 if __name__=="__main__":
     # ui=CliUI()
@@ -24,5 +30,6 @@ if __name__=="__main__":
     # except KeyboardInterrupt:
     #     print("Saliendo")
     file=sys.argv[1]
-    clasify(file)
+    # clasify(file)
     # clasify_bayes(file)
+    clasify_conjuntos(file)

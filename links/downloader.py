@@ -1,13 +1,11 @@
-import sys
 import requests
 from urllib3.exceptions import InsecureRequestWarning
 import os
 from os import path
-args=sys.argv
 requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 def downloadFile2folder(file,folder):
-    ''' Descarga un pdf en un folder '''
+    ''' Descarga un pdf de internet en un folder '''
     with open(file,'r') as file:
         for line in file:
             line=line.replace('\n','')
@@ -28,14 +26,10 @@ def downloadFile2folder(file,folder):
             except Exception as e:
                 print(f"Algo saló mal con {name} {response.status_code}: {link} {e}")
 
-# downloadFile2folder(args[1],args[2])
 TRAINING_FOLDER='./noexiste'
 def checkCreate(folder):
-    ''' Comprueba si existe un archivo sino lo crea '''
-    if(path.exists(folder)):
-        print("Exste")
-    else:
-        print("No existe se crea")
+    ''' Comprueba si existe una carpeta sino la crea '''
+    if(not path.exists(folder)):
         os.mkdir(folder)
 
 def downloadArticles():

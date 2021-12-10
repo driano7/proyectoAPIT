@@ -1,17 +1,29 @@
 from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords
-from pprint import pprint
 import json
+
 class Preprocess:
-    def __init__(self,file=None):
+    ''' Esta clase se encarga de realizar el conteo de las palabras,
+    realiza la radicalización (stemming) y filtra las stopwords
+    a medida que cuenta las palabras.
+    '''
+    def __init__(self,file:str='global_count.json'):
+        '''
+        El constructor define un archivo en el que se almacenará el conteo de todalas
+        las palabras que han pasado por el conteo.
+        file (string): Archivo con el conteo absoluto de las palabras
+        '''
         self.stemmer=SnowballStemmer("spanish")
         self.stopwords=stopwords.words("spanish")
         self.stopwords_en=stopwords.words("english")
         self.results=None
         self.filename=file
         self.total_word_counter=0
+        self.loadWords()
 
     def loadWords(self):
+        ''' Carga el conteo global almacenado en el archivo definido.
+        Si no existe se creará (estando vacío al inicio)'''
         if self.filename:
             try:
                 with open(self.filename,'r',encoding="utf-8") as file:
@@ -23,6 +35,10 @@ class Preprocess:
             print("Este archivo no es serialize porque no se definió el archivo")
 
     def countWords(self,words:list,**kwargs):
+        ''' Se realiza el conteo de las palabras
+        Params:
+            word (lista[cadenas]): Una lista con la palabras a contar
+        '''
         words_area=kwargs.get('words_area', False)
         if not self.results:
             self.results={}
@@ -49,15 +65,18 @@ class Preprocess:
             k: v for k, v in
             sorted(self.results.items(), key=lambda item: item[1],reverse=True)
         }
-#        pprint(self.results,sort_dicts=False)
         return self.results
 
     def normalize(self):
+        ''' Se normaliza el número de apariciones de una palabra respecto al número
+        de palabras que contaron'''
         self.results= { k: v/self.total_word_counter for k, v in
             sorted(self.results.items(), key=lambda item: item[1],reverse=True)
         }
 
     def serialize(self):
+        ''' Se guarda un archivo con la forma
+        {palabra_1:num_aparciones,palabra_1:num_aparciones ...} '''
         if self.filename:
             with open(self.filename,'w',encoding="utf-8") as file:
                 file.write(json.dumps(self.results))
