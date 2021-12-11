@@ -4,7 +4,7 @@ from Model import Model
 from ModelBayes import ModelBayes
 from ModelConjuntos import ModelConjuntos
 from TextExtractor import TextExtractor
-
+from matplotlib import pyplot as plt
 try:
     with open('constantes.json','r') as file:
         ENV=json.loads(file.read())
@@ -32,10 +32,60 @@ VALIDATION_FOLDER=ENV['validation']
 #             etiqueta_determinada[2]=model3.classify(" ".join(text))
 #             resultados[area].append(etiqueta_determinada)
 # print(etiquetas_determinadas)
+def graficar(metricas,titulo):
+    '''Gráfica las métricas un modelo '''
+    figure=plt.figure(figsize=(12,3))
+    ax_exactitud=figure.add_subplot(1,4,1)
+    ax_presicion=figure.add_subplot(1,4,2)
+    ax_recall=figure.add_subplot(1,4,3)
+    ax_f1=figure.add_subplot(1,4,4)
+    ax_exactitud.set_title("Exactitud")
+    ax_presicion.set_title("Precisión")
+    ax_recall.set_title("Recall")
+    ax_f1.set_title("F1")
+
+    for i,area in enumerate(metricas.keys(),start=1):
+        ax_exactitud.bar(i,metricas[area][0])#Grafica los datos de exactitud
+        ax_presicion.bar(i,metricas[area][1])#Grafica los datos de presición
+        ax_recall.bar(i,metricas[area][2])#Grafica los datos de recall
+        ax_f1.bar(i,metricas[area][3])#Grafica los datos de f1
+
+    labels=metricas.keys()
+    for ax in [ax_exactitud,ax_presicion,ax_recall,ax_f1]:
+        ax.set_xticks(range(1,len(labels)+1))
+        ax.set_xticklabels(labels)
+        ax.legend()
+    figure.suptitle(titulo, fontsize=16)
+    figure.show()
+
+def graficar_modelos(metricas,titulo):
+    '''Gráfica las métricas generales de los modelos '''
+    figure=plt.figure(figsize=(12,3))
+    ax=figure.add_subplot(1,1,1)
+
+    ax.bar(1,metricas['0'])
+    ax.bar(2,metricas['1'])
+    ax.bar(3,metricas['2'])
+
+    labels=['Modelo 1','Modelo 2','Modelo 3']
+    ax.set_xticks(range(1,len(labels)+1))
+    ax.set_xticklabels(labels)
+    ax.legend()
+    figure.suptitle(titulo, fontsize=16)
+    figure.show()
+    input()
+
 resultados={}
 with open('datos_metricas.json','r') as file:
     resultados=json.loads(file.read())
-def calcularMetricas(num_modelo):
+
+def calcularMetricas(num_modelo,metricas_modelo):
+    ''' Regresa un diccionario de la forma
+    {etiqueta1:(exactitud,precisión,recall,f1),
+    etiqueta2:(exactitud,precisión,...),
+    ...}
+    '''
+    metricas={area:None for area in resultados.keys()}
     etiquetados_incorrectos={area:0 for area in resultados.keys()}
     etiquetados_correctos={area:0 for area in resultados.keys()}
     total=0
@@ -48,6 +98,7 @@ def calcularMetricas(num_modelo):
                 correctos+=1
             else:
                 etiquetados_incorrectos[etiqueta[num_modelo]]+=1
+    metricas_modelo[str(num_modelo)]=correctos/(total-correctos)
     print(f"correctos: {correctos} incorrectos: {total-correctos}")
     print(f"Exactitud {correctos/(total-correctos)}")
     for area in resultados.keys():
@@ -66,14 +117,19 @@ def calcularMetricas(num_modelo):
         else:
             recall=0.0
             f1=0.0
+        metricas[area]=(exactitud,precision,recall,f1)
         print(area)
         print(f"Exactitud:{exactitud}")
         print(f"Precisión:{precision}")
         print(f"Recall:{recall}")
         print(f"F1:{f1}")
+    return metricas
+
+metricas_modelos={}
 print("Métricas método 1")
-calcularMetricas(0)
+graficar(calcularMetricas(0,metricas_modelos),"Método 1")
 print("Métricas método 2")
-calcularMetricas(1)
+graficar(calcularMetricas(1,metricas_modelos),"Método 2")
 print("Métricas método 3")
-calcularMetricas(2)
+graficar(calcularMetricas(2,metricas_modelos),"Método 3")
+graficar_modelos(metricas_modelos,'Métricas generales de los modelos')

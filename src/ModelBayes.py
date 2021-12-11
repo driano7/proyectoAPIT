@@ -1,5 +1,3 @@
-# Autor original Donovan Riaño Enriquez, APIT 2021-2
-# Modificado por Ángel Santander
 import pandas as pd
 import os
 from Preprocess import Preprocess
