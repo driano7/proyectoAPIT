@@ -30,11 +30,9 @@ class ModelBayes:
         y comienza el entrenamiento con los archivos que se encuentran en las
         carpetas de entrenamiento
         '''
-        self.areas=['Area1','Area2','Area3','Area4']
         self.translate_label=[]
         for area in os.listdir(TRAINING):
             self.translate_label.append(area)
-        self.words={area:None for area in self.areas}
         self.file=None
         self.model = make_pipeline(TfidfVectorizer(), MultinomialNB())
         if file:
@@ -74,7 +72,7 @@ class ModelBayes:
         labels = self.model.predict(text)
         result=self.translate_label[labels[0]]
         print(f"El área predominante es {result}")
-        return labels[0]
+        return result.upper()
 
 if __name__=="__main__":
     from TextExtractor import TextExtractor

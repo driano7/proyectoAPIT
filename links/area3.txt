@@ -4,7 +4,7 @@ administracion 3: https://journal.poligran.edu.co/index.php/poliantea/article/vi
 antropología 1: https://d1wqtxts1xzle7.cloudfront.net/51739594/Citro_Lucio_y_Pugisi_-_Libro_Heuristicas_del_cuerpo-with-cover-page-v2.pdf?Expires=1633970199&Signature=RF~t7FNE21yw4PV2YTkGTmjNHeIbEFf9EFrHAjq7NM~XYvPk~FdLksl4EyE4GhhsO3tlfOg6zXvck4YYRf~c3AMI1~Q8YAMTT482DOzoLU9YX3Mk4yo-BUnH8uHDJLKWbn7WAh2LjiKWysGfgwzSKObTDLavWRTl0dOohH0JckYYHKwBtI8DovYvWY1iSk5i31ciq7LMBVgpN7bKWMR1PCJBgbiEXKoXq63oI2nC6HQmg0WUFj2wDQXI43nyQMYLsB4QUNx2Lw1l5G1fx5bNnvyOPex6GGBTCIEmya1wHbcPcHFB11efzk9F7Wxum6-OCYkASoWIFTf0kZCe8XVbNg__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA
 antropología 2: https://cdsa.aacademica.org/000-081/1474.pdf
 comunicación 1: https://scholar.google.com.mx/scholar?hl=en&as_sdt=0%2C5&q=importancia+de+la+comunicacion+en&btnG=
-comunicación 2: http://mail.upagu.edu.pe/files_ojs/journals/14/articles/342/submission/review/342-61-1211-1-4-20161214.pdf
+comunicación 2: https://www.redalyc.org/pdf/687/68701005.pdf
 periodismo 1: http://www.revistalatinacs.org/a/latina_art71.pdf
 periodismo 2: https://www.apmadrid.es/wp-content/uploads/2013/07/106-124%281%29.pdf
 periodismo 3: https://www.researchgate.net/profile/Elena-Real-Rodriguez/publication/27593724_Periodismo_ciudadano_versus_Periodismo_profesional_somos_todos_periodistas/links/561d54fd08ae50795afd7d2d/Periodismo-ciudadano-versus-Periodismo-profesional-somos-todos-periodistas.pdf
@@ -28,4 +28,3 @@ internacionales 3: http://sedici.unlp.edu.ar/bitstream/handle/10915/58212/Docume
 internacionales 4: https://repositorio.ufsc.br/bitstream/handle/123456789/132277/2014-490.pdf?sequence=1&isAllowed=y
 social 1: https://www.redalyc.org/pdf/1610/161024437013.pdf
 social 2: https://www.colibri.udelar.edu.uy/jspui/bitstream/20.500.12008/28649/1/RF_Claramunt_2009n5.pdf
-

@@ -4,4 +4,8 @@ data
 model
 task.md
 training
-*.json
+words.json
+./training_documents
+./validation_documents
+./data
+./model

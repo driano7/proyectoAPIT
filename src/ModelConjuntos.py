@@ -35,11 +35,11 @@ class ModelConjuntos:
 
         for area in results.keys():
             num_matches=len(results[area])
-            if num_matches>0:
-                print(f"{area} Las coincidencias son: {num_matches}")
-                if num_matches>max[1]:
-                    max=(area,num_matches)
+            print(f"{area} Las coincidencias son: {num_matches}")
+            if num_matches>max[1]:
+                max=(area,num_matches)
         print(f"El área predominante es {max[0]} con: {max[1]} elementos")
+        return max[0].upper()
 
 if __name__=="__main__":
     from TextExtractor import TextExtractor

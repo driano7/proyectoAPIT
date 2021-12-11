@@ -38,8 +38,8 @@ class Model:
         try:
             with open(words_filepath,"r",encoding="utf-8") as file:
                 word_areas=json.loads(file.read())
-            pass
         except FileNotFoundError:
+            print("No existía el archivos de palabras que cuenta todas las etiquetas")
             word_areas={'words_overall':0}
         for area in os.listdir(TRAINING):
             print(f"Area: {area}")
@@ -78,8 +78,8 @@ class Model:
         models={}
         for model in os.listdir(MODEL):
             with open(f'{MODEL}/{model}','r',encoding="utf-8") as file:
-                models[model]=json.loads(file.read())
-                results[model]=0
+                models[model[:-5]]=json.loads(file.read())
+                results[model[:-5]]=0
 
         max=('',0)
         preproceser=Preprocess()
@@ -101,9 +101,9 @@ class Model:
                 max=(area,num_matches)
         if max[0]!='':
             print(f"El área predominante es {max[0]} con: {max[1]} elementos")
+            return max[0]
         else:
             print("No se pudo reconocer")
-        return results
 
 if __name__=="__main__":
     from TextExtractor import TextExtractor

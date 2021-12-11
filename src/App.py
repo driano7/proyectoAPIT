@@ -31,6 +31,6 @@ if __name__=="__main__":
     # except KeyboardInterrupt:
     #     print("Saliendo")
     file=sys.argv[1]
-    # clasify(file)
+    clasify(file)
     # clasify_bayes(file)
-    clasify_conjuntos(file)
+    # clasify_conjuntos(file)

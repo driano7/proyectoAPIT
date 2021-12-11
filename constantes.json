@@ -1,0 +1,7 @@
+{
+    "training":"./training_documents",
+    "validation":"./validation_documents",
+    "data":"./data",
+    "model":"./model",
+    "global_count":"words"
+}
