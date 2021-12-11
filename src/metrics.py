@@ -34,7 +34,7 @@ VALIDATION_FOLDER=ENV['validation']
 # print(etiquetas_determinadas)
 def graficar(metricas,titulo):
     '''Gráfica las métricas un modelo '''
-    figure=plt.figure(figsize=(12,3))
+    figure=plt.figure(figsize=(12,4))
     ax_exactitud=figure.add_subplot(1,4,1)
     ax_presicion=figure.add_subplot(1,4,2)
     ax_recall=figure.add_subplot(1,4,3)
@@ -60,7 +60,7 @@ def graficar(metricas,titulo):
 
 def graficar_modelos(metricas,titulo):
     '''Gráfica las métricas generales de los modelos '''
-    figure=plt.figure(figsize=(12,3))
+    figure=plt.figure(figsize=(12,4))
     ax=figure.add_subplot(1,1,1)
 
     ax.bar(1,metricas['0'])
