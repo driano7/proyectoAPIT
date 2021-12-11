@@ -5,7 +5,5 @@ model
 task.md
 training
 words.json
-./training_documents
-./validation_documents
-./data
-./model
+training_documents
+validation_documents
