@@ -8,4 +8,6 @@ ADD ./requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
 RUN python -B ./links/downloader.py
 RUN make train
+CMD [ "bash", "app", "-i" ,"test/wiki_java.pdf" ]
 CMD [ "bash", "app", "-c" ,"test/wiki_java.pdf" ]
+CMD [ "bash", "app", "-b" ,"test/wiki_java.pdf" ]
