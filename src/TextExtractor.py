@@ -28,8 +28,8 @@ class TextExtractor:
         ''' regresa en una lista las palabras entre las páginas a y b'''
         text=''
         for i in range (page_a-1,page_b):
-            page = self.pdf.loadPage(i)
-            text+= page.getText("text")
+            page = self.pdf.load_page(i)
+            text+= page.get_text("text")
         text=clean_text(text)
         return text.split()
 
@@ -38,8 +38,8 @@ class TextExtractor:
         alfanuméricos)'''
         text=''
         for i in range (0,len(self.pdf)):
-            page = self.pdf.loadPage(i)
-            text+= page.getText("text")
+            page = self.pdf.load_page(i)
+            text+= page.get_text("text")
         text=clean_text(text)
         if splited:
             return text.split(' ')
@@ -50,8 +50,8 @@ class TextExtractor:
         '''Se extrae todo el texto de archivo sin ninguna modificación '''
         text=''
         for i in range (0,len(self.pdf)):
-            page = self.pdf.loadPage(i)
-            text+= page.getText("text")
+            page = self.pdf.load_page(i)
+            text+= page.get_text("text")
         return text
 
 if __name__=="__main__":

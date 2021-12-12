@@ -100,7 +100,7 @@ class Model:
             if num_matches>max[1]:
                 max=(area,num_matches)
         if max[0]!='':
-            print(f"El área predominante es {max[0]} con: {max[1]} elementos")
+            print(f"El área predominante es {max[0]} con la suma: {max[1]}")
             return max[0]
         else:
             print("No se pudo reconocer")

@@ -1,5 +1,9 @@
 # Autor original Donovan Riaño Enriquez, APIT 2021-2
 # Modificado por Ángel Santander
+'''
+Esta interfaz vía linea de comando sólo aplica para el moledo de clasificación
+de los conjuntos
+'''
 from TextExtractor import TextExtractor
 from Model import Model
 from Stats import Stats

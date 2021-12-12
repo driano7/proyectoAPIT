@@ -3,7 +3,6 @@ biologia 2: https://rac.es/ficheros/doc/00483.pdf
 biologia 3: https://www.redalyc.org/pdf/662/66273108.pdf
 ciencias ambientales 1: http://revistaecosistemas.net/index.php/ecosistemas/article/view/582
 ciecias ambientales 2: http://www2.inecc.gob.mx/publicaciones2/gacetas/641/geografia.pdf
-ciencias ambientales 3: https://dialnet.unirioja.es/servlet/articulo?codigo=6356420
 farmacología 1: https://dialnet.unirioja.es/servlet/articulo?codigo=5302175
 farmacologia 2: http://bonga.unisimon.edu.co/bitstream/handle/20.500.12442/2504/H%c3%a1bilidades_vida_elementos_elementos.pdf?sequence=3&isAllowed=y
 alimentacion 1: https://www.medigraphic.com/pdfs/gaceta/gm-2001/gm015l.pdf
@@ -26,6 +25,7 @@ psicologia 2: http://www.iesdi.org/Maestrias/EstTer2/Materiales/Material%20Teori
 psicologia 3: https://www.redalyc.org/pdf/773/77360110.pdf
 quimica 1: https://www.redalyc.org/pdf/695/695502.pdf
 quimica 2: https://www.redalyc.org/pdf/636/63624365021.pdf
-quimica 3: http://eprints.uanl.mx/10323/1/31_remocion.pdf
+quimica 3: https://idus.us.es/bitstream/handle/11441/96376/ARANF_martin-bueno_2017_carl-remigius.pdf
 quimica 4: https://repository.udem.edu.co/bitstream/handle/11407/954/Una%20alternativa%20limpia%20para%20el%20tratamiento%20de%20las%20aguas%20residuales%20galv%C3%A1nicas%20revisi%C3%B3n%20bibliogr%C3%A1fica.pdf?sequence=2
 quimica 5: https://www.interempresas.net/feriavirtual/catalogos_y_documentos/87050/fosfatos.pdf
+quimica 6: https://www.researchgate.net/profile/William-Quevedo/publication/342600735_Catinonas_sinteticas_una_revision_del_panorama_actual_y_las_estrategias_de_deteccion_analitica/links/5f0c6f2f92851c38a519bd4c/Catinonas-sinteticas-una-revision-del-panorama-actual-y-las-estrategias-de-deteccion-analitica.pdf

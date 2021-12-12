@@ -5,6 +5,7 @@ from ModelBayes import ModelBayes
 from ModelConjuntos import ModelConjuntos
 from TextExtractor import TextExtractor
 from matplotlib import pyplot as plt
+''' Se recuperan las constantes relacionadas a la estructura de archivos '''
 try:
     with open('constantes.json','r') as file:
         ENV=json.loads(file.read())
@@ -15,23 +16,6 @@ except Exception as e:
 TRAINING_FOLDER=ENV['training']
 VALIDATION_FOLDER=ENV['validation']
 
-# model1=ModelConjuntos('glosario.csv')
-# model2=Model()
-# model3=ModelBayes()
-# resultados={}
-# etiquetas_determinadas=[]
-# for area in os.listdir(VALIDATION_FOLDER):
-#     resultados[area]=[]
-#     for file in os.listdir(VALIDATION_FOLDER+os.sep+area):
-#         if file[-3:]=='pdf':
-#             etiqueta_determinada=[-1,-1,-1]
-#             pdf=TextExtractor(VALIDATION_FOLDER+'/'+area+'/'+file)
-#             text=pdf.getAllText()
-#             etiqueta_determinada[0]=model1.classify(text)
-#             etiqueta_determinada[1]=model2.classify(text)
-#             etiqueta_determinada[2]=model3.classify(" ".join(text))
-#             resultados[area].append(etiqueta_determinada)
-# print(etiquetas_determinadas)
 def graficar(metricas,titulo):
     '''Gráfica las métricas un modelo '''
     figure=plt.figure(figsize=(12,4))
@@ -75,11 +59,7 @@ def graficar_modelos(metricas,titulo):
     figure.show()
     input()
 
-resultados={}
-with open('datos_metricas.json','r') as file:
-    resultados=json.loads(file.read())
-
-def calcularMetricas(num_modelo,metricas_modelo):
+def calcularMetricas(resultados,num_modelo,metricas_modelo):
     ''' Regresa un diccionario de la forma
     {etiqueta1:(exactitud,precisión,recall,f1),
     etiqueta2:(exactitud,precisión,...),
@@ -98,9 +78,9 @@ def calcularMetricas(num_modelo,metricas_modelo):
                 correctos+=1
             else:
                 etiquetados_incorrectos[etiqueta[num_modelo]]+=1
-    metricas_modelo[str(num_modelo)]=correctos/(total-correctos)
+    metricas_modelo[str(num_modelo)]=correctos/total
     print(f"correctos: {correctos} incorrectos: {total-correctos}")
-    print(f"Exactitud {correctos/(total-correctos)}")
+    print(f"Exactitud {correctos/(total)}")
     for area in resultados.keys():
         # NUMERO DE DOCUMENTOS REALES DE ESA ETIQUETA
         num_docs=len(resultados[area])
@@ -125,11 +105,44 @@ def calcularMetricas(num_modelo,metricas_modelo):
         print(f"F1:{f1}")
     return metricas
 
-metricas_modelos={}
-print("Métricas método 1")
-graficar(calcularMetricas(0,metricas_modelos),"Método 1")
-print("Métricas método 2")
-graficar(calcularMetricas(1,metricas_modelos),"Método 2")
-print("Métricas método 3")
-graficar(calcularMetricas(2,metricas_modelos),"Método 3")
-graficar_modelos(metricas_modelos,'Métricas generales de los modelos')
+def validacion():
+    ''' Ejecuta cada uno de los clasificadores para cada uno de los archivos
+    PDF en la carpeta de validación
+    '''
+    model1=ModelConjuntos('glosario.csv')
+    model2=Model()
+    model3=ModelBayes()
+    resultados={}
+    etiquetas_determinadas=[]
+    for area in os.listdir(VALIDATION_FOLDER):
+        resultados[area]=[]
+        for file in os.listdir(VALIDATION_FOLDER+os.sep+area):
+            if file[-3:]=='pdf':
+                etiqueta_determinada=[-1,-1,-1]
+                pdf=TextExtractor(VALIDATION_FOLDER+'/'+area+'/'+file)
+                text=pdf.getAllText()
+                etiqueta_determinada[0]=model1.classify(text)
+                etiqueta_determinada[1]=model2.classify(text)
+                etiqueta_determinada[2]=model3.classify(" ".join(text))
+                resultados[area].append(etiqueta_determinada)
+    return resultados
+
+def main(serializado=False):
+    if serializado:
+        resultados={}
+        with open('datos_metricas.json','r') as file:
+            resultados=json.loads(file.read())
+        print("Mostrando la validación serializada")
+    else:
+        resultados=validacion()
+    metricas_modelos={}
+    print("Métricas método 1")
+    graficar(calcularMetricas(resultados,0,metricas_modelos),"Método 1")
+    print("Métricas método 2")
+    graficar(calcularMetricas(resultados,1,metricas_modelos),"Método 2")
+    print("Métricas método 3")
+    graficar(calcularMetricas(resultados,2,metricas_modelos),"Método 3")
+    graficar_modelos(metricas_modelos,'Métricas generales de los modelos')
+
+if __name__=="__main__":
+    main()

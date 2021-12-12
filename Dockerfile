@@ -7,4 +7,5 @@ ADD ./glosario.csv /glosario.csv
 ADD ./requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
 RUN python -B ./links/downloader.py
-CMD [ "bash", "app" ,"test/wiki_java.pdf" ]
+RUN make train
+CMD [ "bash", "app", "-c" ,"test/wiki_java.pdf" ]

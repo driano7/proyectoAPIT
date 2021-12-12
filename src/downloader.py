@@ -16,6 +16,7 @@ except Exception as e:
 
 TRAINING_FOLDER=ENV['training']
 VALIDATION_FOLDER=ENV['validation']
+
 def downloadFile2folder(name_link_list,folder):
     ''' Descarga un pdf de internet en un folder '''
     for item in name_link_list:
@@ -60,6 +61,9 @@ def downloadArticles():
             checkCreate(label_folder_validation)
             validation=random.sample(links,int(len(links)*.2))
             training=[link for link in links if link not in validation]
+            with open('links_validacion.txt','a') as file:
+                for link in validation:
+                    file.write(f'{link[0]}'+link[1]+'\n')
             downloadFile2folder(training,label_folder_training)
             downloadFile2folder(validation,label_folder_validation)
 
