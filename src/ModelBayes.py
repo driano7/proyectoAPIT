@@ -2,7 +2,6 @@ import pandas as pd
 import os
 from Preprocess import Preprocess
 from TextExtractor import TextExtractor
-from sklearn.datasets import fetch_20newsgroups
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline

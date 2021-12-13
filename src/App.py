@@ -1,4 +1,3 @@
-from CliUI import CliUI
 from ModelConjuntos import ModelConjuntos
 from Model import Model
 from ModelBayes import ModelBayes

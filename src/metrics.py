@@ -69,33 +69,35 @@ def calcularMetricas(resultados,num_modelo,metricas_modelo):
     etiquetados_incorrectos={area:0 for area in resultados.keys()}
     etiquetados_correctos={area:0 for area in resultados.keys()}
     total=0
-    correctos=0
+    correctos_global=0
     for area in resultados.keys():
         for etiqueta in resultados[area]:
             total+=1
             if etiqueta[num_modelo]==area:
+                # Verdadero positivo
                 etiquetados_correctos[area]+=1
-                correctos+=1
+                correctos_global+=1
             else:
+                # Falso negativo
                 etiquetados_incorrectos[etiqueta[num_modelo]]+=1
-    metricas_modelo[str(num_modelo)]=correctos/total
-    print(f"correctos: {correctos} incorrectos: {total-correctos}")
-    print(f"Exactitud {correctos/(total)}")
+    metricas_modelo[str(num_modelo)]=correctos_global/total
+    print(f"correctos: {correctos_global} incorrectos: {total-correctos_global}")
+    print(f"Exactitud {correctos_global/(total)}")
     for area in resultados.keys():
         # NUMERO DE DOCUMENTOS REALES DE ESA ETIQUETA
-        num_docs=len(resultados[area])
+        num_docs=len(resultados[area]) #Verdadero positivo + Falso negativo
         # NUMERO DE DOCUMENTOS ETIQUETADOS CON ESTA ETIQUETA
-        num_etiquetados=etiquetados_correctos[area]+etiquetados_incorrectos[area]
+        num_etiquetados=etiquetados_correctos[area]+etiquetados_incorrectos[area] #verdaderos positivos + Falsos positivos
         # NÚMERO DE DOCUMENTOS DE OTRA ETIQETA NO ETIQUETADOS
-        no_etiquetados_correctos=total-num_docs-etiquetados_incorrectos[area]
+        no_etiquetados_correctos=total-num_docs-etiquetados_incorrectos[area] # verdadero negativos
         # Métricas
         exactitud=(etiquetados_correctos[area]+no_etiquetados_correctos)/(total)
-        precision=(etiquetados_correctos[area]/num_docs)
+        recall=(etiquetados_correctos[area]/num_docs)
         if num_etiquetados>0:
-            recall=(etiquetados_correctos[area]/num_etiquetados)
+            precision=(etiquetados_correctos[area]/num_etiquetados)
             f1=2*(precision*recall)/(precision+recall)
         else:
-            recall=0.0
+            precision=0.0
             f1=0.0
         metricas[area]=(exactitud,precision,recall,f1)
         print(area)

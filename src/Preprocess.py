@@ -1,7 +1,8 @@
 from nltk.stem.snowball import SnowballStemmer
 from nltk.corpus import stopwords
 import json
-
+import nltk
+nltk.download('stopwords')
 class Preprocess:
     ''' Esta clase se encarga de realizar el conteo de las palabras,
     realiza la radicalización (stemming) y filtra las stopwords
