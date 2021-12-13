@@ -2,8 +2,23 @@
 
 En este proyecto de intentó realizar un clasificador de textos en 4 áreas del conocimiento.
 
-Ejecución
-./app -<i|c|b> <pdf_file_path>
+## Instalación
+### Para descargar los artículos
+python -B src/downloader.py
+### Para realizar el entregamiento del segundo modelo
+python -B src/Model.py
+
+
+## Ejecución
+
+./app -<i|c|b> <pdf_file_path> <br>
+  -h, --help  muestra la ayuda <br>
+  -i          Clasifica utilizando la intersección de conjuntos <br>
+  -c          Clasifica utilizando el conteo <br>
+  -b          Clasifica utilizando el clasificador bayesiano <br>
+### Ejecución de las métricas
+python -B src/metrics.py
+
 
 # capturas
 ## Intersección de conjuntos (campos semánticos)
