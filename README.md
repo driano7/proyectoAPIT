@@ -8,6 +8,11 @@ python -B src/downloader.py
 ### Para realizar el entregamiento del segundo modelo
 python -B src/Model.py
 
+alternativamente se puede descargar el proyecto con los articulos descargados y el modelo entrenado utilizando el siguiente enlace 
+https://drive.google.com/file/d/1UX5ELAgx-rYCg734VnG3cZE0fbPyJoqu/view?usp=sharing
+
+### Instalación de las dependencias
+pip install -r requirements.txt
 
 ## Ejecución
 
