@@ -12,6 +12,8 @@ python -B src/Model.py
 ## Ejecución
 
 ./app -<i|c|b> <pdf_file_path> <br>
+o alternativamente <nr>
+python -B src/App.py -<i|c|b> <pdf_file_path> <br>
   -h, --help  muestra la ayuda <br>
   -i          Clasifica utilizando la intersección de conjuntos <br>
   -c          Clasifica utilizando el conteo <br>
